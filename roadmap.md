@@ -1,0 +1,1 @@
+## ECMA 5+ browsers only supports

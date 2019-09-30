@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{title}}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" type="image/png" href="/assets/polyblade-logo.png" />
+    <meta name="description" content="Makes glory to your site. Polyblade a css generator platform, it saves time for UI developers.">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,polyblade,poly,blade">
+    <meta name="author" content="Haribalajiravi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo:800i" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/js/jquery.min.js"></script>
+    <script src="/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/ace/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/ace/ext-beautify.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/http_utils.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="h35px">
+            <img src="/assets/polyblade-logo.png" class="w35px h35px">
+            <a href="#" class="txtbld ablock prb12px">Polyblade</a>
+        </div>
+    </div>
+
+
+    <div class="left-bar" id="left-bar">
+        <div class="css-option cursor {{#if text}} active {{/if}}" title="text properties" onclick="location.href='/css/text'">
+            <i class="fa fa-text-width" style="font-size:24px"></i>
+        </div>
+        <div class="css-option cursor {{#if font}} active {{/if}}" title="font properties" onclick="location.href='/css/font'">
+            <i class="fa fa-font" style="font-size:24px"></i>
+        </div>
+        <div class="css-option cursor {{#if margin}} active {{/if}}" title="margin properties" onclick="location.href='/css/margin'">
+            <i class="fa fa-columns" style="font-size:24px"></i>
+        </div>
+        <div class="css-option cursor {{#if padding}} active {{/if}}" title="padding properties" onclick="location.href='/css/padding'">
+            <i class="fa fa-outdent" style="font-size:24px"></i>
+        </div>
+    </div>
+    <div style="margin-top: 55px;margin-left: 60px;">
+        <div class="flex-container">
+            <div class="action-box w30per">
+                <div>
+                    <div class="action-header">HTML</div>
+                    <span id="html_status"></span>
+                    <div class="dispiblk" style="border: 1px solid #cfcfcf;border-radius: 3px;height: 39px;margin: 10px;">
+                        <select class="dispiblk p5px" id="tag" title="choose HTML tag" onchange="selectTagValue()"
+                            style="border: 0px;border-right: 1px solid #efefef;">
+                            <option value="button">button</option>
+                            <option value="div">div</option>
+                            <option value="span">span</option>
+                            <option value="h1">h1</option>
+                        </select>
+                        <div class="dispiblk p5px cursor" style="background-color: #b1eb04;height: 30px;border-bottom-right-radius: 3px;border-top-right-radius: 3px;"
+                            title="add new tag" onclick="createTag()">
+                            <span style="font-size:24px">+</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="fr btn-small" title="expand all/collapse all" onclick="$('.menu_label').click()">+/-</span>
+                        <span class="dispiblk cursor fr btn-small" onclick="toggle('editorDivhtml','html-tree')">toggle</span>
+                        <div class="p10px hide" id="editorDivhtml">
+                            <i class="fa fa-expand fl p5px cursor" style="position: relative;top: 8px;" id="expandhtml"
+                                title="expand" onclick="expandEditor('html');"></i>
+                            <select class="dispiblk p5px m5px" title="select theme" id="htmlTheme" onchange="setTheme('html-editor','htmlTheme')">
+                                <option value="xcode">Xcode</option>
+                                <option value="ambiance">Ambiance</option>
+                                <option value="chaos">Chaos</option>
+                                <option value="chrome">Chrome</option>
+                                <option value="clouds">Clouds</option>
+                                <option value="clouds_midnight">Clouds Midnight</option>
+                                <option value="cobalt">Cobalt</option>
+                                <option value="crimson_editor">Crimson Editor</option>
+                                <option value="dawn">Dawn</option>
+                                <option value="dracula">Dracula</option>
+                                <option value="dreamweaver">Dreamweaver</option>
+                                <option value="eclipse">Eclipse</option>
+                                <option value="github">Github</option>
+                                <option value="gob">Gob</option>
+                                <option value="gruvbox">Gruvbox</option>
+                                <option value="idle_fingers">Idle_fingers</option>
+                                <option value="iplastic">Iplastic</option>
+                                <option value="katzenmilch">Katzenmilch</option>
+                                <option value="kr_theme">KR Theme</option>
+                                <option value="kuroir">Kuroir</option>
+                                <option value="merbivore">Merbivore</option>
+                                <option value="merbivore_soft">Merbivore Soft</option>
+                                <option value="mono_industrial">Mono Industrial</option>
+                                <option value="monokai">Monokai</option>
+                                <option value="pastel_on_dark">Pastel On Dark</option>
+                                <option value="solarized_dark">Solarized Dark</option>
+                                <option value="solarized_light">Solarized Light</option>
+                                <option value="sqlserver">Sql Server</option>
+                                <option value="terminal">Terminal</option>
+                                <option value="textmate">Textmate</option>
+                                <option value="tomorrow">Tomorrow</option>
+                                <option value="tomorrow_night">Tomorrow Night</option>
+                                <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
+                                <option value="tomorrow_night_bright">Tomorrow Night Bright</option>
+                                <option value="tomorrow_night_eighties">Tomorrow Night Eighties</option>
+                                <option value="twilight">Twilight</option>
+                                <option value="vibrant_ink">Vibrant_ink</option>
+                            </select>
+                            <i class="fa fa-times-thin fa-2x hide cursor fr wc" id="collapsehtml" title="collapse"
+                                aria-hidden="true" onclick="collapaseEditor('html');"></i>
+                            <div id="html-editor" class="editor"></div>
+                        </div>
+                        <div id="html-tree" class="dispiblk tree-view">
+                            <span class="no-content-tree-view">your tree view here</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="action-header">CSS</div>
+                    <span id="css_status"></span>
+                    <div class="dispiblk" style="border: 1px solid #dcdcdc;border-radius: 3px;height: 40px;margin: 10px;">
+                        <select class="dispiblk p5px" id="styleType" title="choose style type" style="border: 0px;border-right: 1px solid #efefef;width: 70px;">
+                            <option value=".">class</option>
+                            <option value="">none</option>
+                            <option value="#">id</option>
+                        </select>
+                        <input id="addStyle" placeholder="enter style" class="add-text" style="border: 0px;" onkeypress="onKeyCodeAction(event,13,createStyle)">
+                        <div class="dispiblk p5px cursor" style="background-color: #b1eb04;height: 30px;" title="add new style"
+                            onclick="createStyle()">
+                            <span style="font-size:24px;">+</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="dispiblk cursor fr btn-small" onclick="toggle('editorDivcss','css-tree')">toggle</span>
+                        <div class="p10px hide" id="editorDivcss">
+                            <i class="fa fa-expand fl p5px cursor" style="position: relative;top: 8px;" id="expandcss"
+                                title="expand" onclick="expandEditor('css');"></i>
+                            <select class="dispiblk p5px m5px" title="select theme" id="cssTheme" onchange="setTheme('css-editor','cssTheme')">
+                                <option value="xcode">Xcode</option>
+                                <option value="ambiance">Ambiance</option>
+                                <option value="chaos">Chaos</option>
+                                <option value="chrome">Chrome</option>
+                                <option value="clouds">Clouds</option>
+                                <option value="clouds_midnight">Clouds Midnight</option>
+                                <option value="cobalt">Cobalt</option>
+                                <option value="crimson_editor">Crimson Editor</option>
+                                <option value="dawn">Dawn</option>
+                                <option value="dracula">Dracula</option>
+                                <option value="dreamweaver">Dreamweaver</option>
+                                <option value="eclipse">Eclipse</option>
+                                <option value="github">Github</option>
+                                <option value="gob">Gob</option>
+                                <option value="gruvbox">Gruvbox</option>
+                                <option value="idle_fingers">Idle_fingers</option>
+                                <option value="iplastic">Iplastic</option>
+                                <option value="katzenmilch">Katzenmilch</option>
+                                <option value="kr_theme">KR Theme</option>
+                                <option value="kuroir">Kuroir</option>
+                                <option value="merbivore">Merbivore</option>
+                                <option value="merbivore_soft">Merbivore Soft</option>
+                                <option value="mono_industrial">Mono Industrial</option>
+                                <option value="monokai">Monokai</option>
+                                <option value="pastel_on_dark">Pastel On Dark</option>
+                                <option value="solarized_dark">Solarized Dark</option>
+                                <option value="solarized_light">Solarized Light</option>
+                                <option value="sqlserver">Sql Server</option>
+                                <option value="terminal">Terminal</option>
+                                <option value="textmate">Textmate</option>
+                                <option value="tomorrow">Tomorrow</option>
+                                <option value="tomorrow_night">Tomorrow Night</option>
+                                <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
+                                <option value="tomorrow_night_bright">Tomorrow Night Bright</option>
+                                <option value="tomorrow_night_eighties">Tomorrow Night Eighties</option>
+                                <option value="twilight">Twilight</option>
+                                <option value="vibrant_ink">Vibrant_ink</option>
+                            </select>
+                            <i class="fa fa-times-thin fa-2x hide cursor fr wc" id="collapsecss" title="collapse"
+                                aria-hidden="true" onclick="collapaseEditor('css');"></i>
+                            <div id="css-editor" class="editor"></div>
+                        </div>
+                        <div id="css-tree" class="dispiblk tree-view">
+                            <span class="no-content-tree-view">your tree view here</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{{body}}}
+            <div class="action-box w30per">
+                <div class="action-header">Preview</div>
+                <iframe class="preview-frame" id="samplePreview"></iframe>
+            </div>
+        </div>
+        <div id="cssContextMenu" class="contextMenu noselect box-shadow hide" onContextMenu="return false;">
+            <div class="menu-item" id="deleteStyle" onclick="deleteStyle();">
+                <i class="fa fa-trash-o p3px f10pt"></i>delete</div>
+            <div class="menu-item" id="cssCancel" onclick="hideContextMenu('cssContextMenu')">
+                <i class="fa fa-close"></i>
+                cancel
+            </div>
+        </div>
+        <div id="htmlContextMenu" class="contextMenu noselect box-shadow hide" onContextMenu="return false;">
+            <div class="menu-item sub-menu dropdown" id="addTag">
+                <i class="fa fa-plus p3px f10pt"></i>
+                add tag
+                <div class="dropdown-content">
+                    <div id="addTagDropDown">
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item sub-menu dropdown" id="addClass">
+                <i class="fa fa-plus p3px f10pt"></i>
+                add class
+                <div class="dropdown-content">
+                    <div id="addClassDropDown">
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item sub-menu dropdown" id="removeClass">
+                <i class="fa fa-trash-o p3px f10pt"></i>
+                remove class
+                <div class="dropdown-content">
+                    <div id="removeClassDropDown">
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item sub-menu dropdown" id="addText">
+                <i class="fa fa-plus p3px f10pt"></i>
+                add text
+                <div class="dropdown-content">
+                    <input id="addTextContent" placeholder="enter text" class="add-text">
+                </div>
+            </div>
+            <div class="menu-item" id="deleteElement" onclick="deleteElement();">
+                <i class="fa fa-trash-o p3px f10pt"></i>delete</div>
+            <div class="menu-item" id="htmlCancel" onclick="hideContextMenu('htmlContextMenu')">
+                <i class="fa fa-close"></i>
+                cancel
+            </div>
+        </div>
+        <script src="/js/ace_handler.js"></script>
+        <script src="/js/preview.js"></script>
+    </div>
+    <div class="center-panel w150px h125px hide">
+        <img src="/assets/polyblade-logo.svg" class="w150px">
+        <span class="nspan">Loading...</span>
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>
