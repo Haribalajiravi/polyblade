@@ -6,5 +6,5 @@ npm start
 ```
 ## Developer run
 ```
-npm devstart
+npm run dev:start
 ```
